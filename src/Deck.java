@@ -3,7 +3,6 @@ import java.util.Random;
 public class Deck extends Card {
     int number = 52;
     Card [] deck = new Card[number];
-    Card [] deckOut = new Card[number];
     Random random = new Random();
 
     public void showCard(int i) {
@@ -26,15 +25,13 @@ public class Deck extends Card {
             }
     }
 
-    public void pullOutRandom(){
-        int number = random.nextInt(52);
-        System.out.print(number + "\t");
-        showCard(number);
-    }
-
-    public void pullOutRandomAll() {
-        for (int i = 0; i < 53; i++) {
-            pullOutRandom();
+    public void mixed() {
+        Card temp;
+        for(int i = 0; i < deck.length; i++) {
+            int tmp = random.nextInt(deck.length - 1);
+            temp = deck[i];
+            deck[i] = deck[tmp];
+            deck[tmp] = temp;
         }
     }
 }
